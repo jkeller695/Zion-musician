@@ -139,6 +139,21 @@ input,select,textarea{font:inherit;font-size:14px;color:var(--fg);background:var
 .hyread li{display:grid;grid-template-columns:120px 64px 1fr;gap:8px;align-items:baseline;min-width:0}
 .hyread .hn,.hnum{font-family:var(--mono);font-variant-numeric:tabular-nums}
 .hyform{display:flex;flex-direction:column;gap:10px}
+.ss{border:1px solid var(--line);border-radius:8px;background:var(--sunk)}
+.ss>summary{cursor:pointer;padding:8px 10px;font-weight:600;font-size:14px;list-style-position:inside}
+.ssbody{display:flex;flex-direction:column;gap:8px;padding:0 10px 10px}
+.ssbody p{margin:0;font-size:13px;color:var(--muted);max-width:65ch}
+.ssbody textarea{width:100%;font-size:13px;resize:vertical}
+.sslist{display:flex;flex-direction:column}
+.ssrow{display:grid;grid-template-columns:72px minmax(0,1fr) auto;gap:4px 8px;align-items:center;padding-block:6px;border-top:1px solid var(--line);font-size:14px}
+.ssrow .hn{font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:13px}
+.ssrow .cat{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ssrow .hint{font-size:12px;color:var(--muted)}
+.ssrow .hint.recent{color:var(--warn);font-weight:600}
+.ssrow .ssact{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.ssrow .ssact select{font-size:13px;padding:4px 6px}
+.ssrow .done{color:var(--ok);font-size:13px;font-weight:600}
+@media (max-width:560px){.ssrow{grid-template-columns:64px minmax(0,1fr)}.ssrow .ssact{grid-column:1 / -1;justify-content:flex-start}}
 .hyrow{display:grid;grid-template-columns:120px 76px 72px minmax(0,1.4fr) minmax(0,1fr);gap:6px;align-items:center}
 .hyrow .hint{grid-column:3 / -1;font-size:12px;color:var(--muted)}
 .hyrow .hint:empty{display:none}
@@ -146,10 +161,10 @@ input,select,textarea{font:inherit;font-size:14px;color:var(--fg);background:var
 .hyrow .hplace{font-size:12px;font-weight:600;min-width:0}
 .hyrow .hrm{grid-column:-2;justify-self:end;color:var(--danger)}
 .hyrow .hlink{grid-column:3 / -1}
-.hyrow.extra .hlink{grid-column:3 / -2}
+.hyrow.extra .hlink,.hyrow.filled .hlink{grid-column:3 / -2}
 .hylisten{font-size:13px;font-weight:600;white-space:nowrap}
 .hyrow .hint.recent{color:var(--warn);font-weight:600}
-@media (max-width:640px){.hyrow{grid-template-columns:76px 72px minmax(0,1fr)}.hyrow .r,.hyrow .hplace{grid-column:1 / -1}.hyrow .hnote,.hyrow .hlink,.hyrow.extra .hlink{grid-column:1 / -1}.hyrow .hint{grid-column:1 / -1}
+@media (max-width:640px){.hyrow{grid-template-columns:76px 72px minmax(0,1fr)}.hyrow .r,.hyrow .hplace{grid-column:1 / -1}.hyrow .hnote,.hyrow .hlink,.hyrow.extra .hlink,.hyrow.filled .hlink{grid-column:1 / -1}.hyrow .hint{grid-column:1 / -1}
 .hyread li{grid-template-columns:56px 1fr}.hyread .r{grid-column:1 / -1}}
 @media (max-width:560px){.day{min-height:52px}.day .chip{display:none}.day .svc{font-size:9px}}
 @media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}}
@@ -600,6 +615,80 @@ function hymnLine(s){
   if (!items.length) return "";
   return `<div class="hyline"><span class="r">Hymns</span> ${items.map(i=>`<span title="${esc(labelOf(i))}">${i.num?hymnLabel(i)+" ":""}${esc(i.title||"")}${listenLink(i)?" "+listenLink(i):""}</span>`).join('<span class="sep">·</span>')}</div>`;
 }
+/* ---------- Sundays & Seasons suggestions ----------
+   The director opens the day in Sundays & Seasons (their own login), copies the
+   Music suggestions and pastes them here. Nothing is fetched from that site, and
+   pasted text stays on the director's own device; only hymns they add are saved. */
+const SS_BASE = (window.ZION_CONFIG && window.ZION_CONFIG.sundaysSeasonsUrl) || "https://members.sundaysandseasons.com/";
+const ssUrl = date => safeUrl(SS_BASE.replace("{date}", date)) || "https://members.sundaysandseasons.com/";
+const SS_BOOKS = ["ELW","ACS","LBW","WOV","LLC","TFF","W&P","MSB1","MSB2","ASG","GTG","SC","H82","UMH","GG","LSB"];
+const SS_CODE = new RegExp("(?:^|[^A-Za-z&])(" + SS_BOOKS.map(b=>b.replace("&","&(?:amp;)?")).join("|") + ")\\s*#?\\s*(\\d{1,4}[a-z]?)\\b", "i");
+const SS_HEAD = /^(gathering|entrance|hymn of praise|canticle|psalm|psalmody|hymn of the day|day|offering|offertory|communion|distribution|sending|dismissal|assembly song|choral|choir|children'?s|keyboard|instrumental|handbell|global|praise|contemporary|organ|piano|vocal|prelude|postlude|music|songs?|hymns?)\b/i;
+const SS_PLACE = [[/choral|choir|vocal|handbell|keyboard|instrument|organ|piano|ensemble|contemporary/i,"Special Music"],[/gather|entrance/i,"Gathering"],[/hymn of praise|canticle/i,"Hymn of Praise"],[/day/i,"Hymn of the Day"],[/offer/i,"Offertory"],[/commun|distrib/i,"Communion"],[/send|dismiss/i,"Sending"],[/prelude/i,"Prelude"],[/postlude/i,"Postlude"],[/child/i,"Children's Message"],[/choral|choir|vocal|handbell|keyboard|instrument|organ|piano/i,"Special Music"]];
+function parseSS(text){
+  const out = [], seen = new Set(); let cat = "", pending = "";
+  for (let raw of String(text||"").split(/\r?\n/)) {
+    const line = raw.replace(/\s+/g," ").trim(); if (!line) continue;
+    const m = line.match(SS_CODE);
+    if (!m) {
+      if (line.length <= 40 && SS_HEAD.test(line) && !/[.!?]$/.test(line)) { cat = line.replace(/[:\-–—]+$/,"").trim(); pending = ""; }
+      else pending = line;
+      continue;
+    }
+    const code = m[1].toUpperCase().replace("&AMP;","&"), num = m[2];
+    let title = line.replace(m[0], " ").replace(/\s+/g," ").replace(/^[\s,;:–—\-()|]+|[\s,;:–—\-()|]+$/g,"").replace(/\(\s*\)/g,"").trim();
+    if (!title && pending) title = pending;
+    pending = "";
+    const key = code+" "+num; if (seen.has(key)) continue; seen.add(key);
+    const main = ["ELW","ACS","LBW","WOV"].includes(code);
+    out.push({code, book: main?code:"Other", num, title: title.slice(0,120), cat});
+    if (out.length >= 80) break;
+  }
+  return out;
+}
+const ssKey = id => "zion-ss-"+id;
+function ssLoad(id){ try { return localStorage.getItem(ssKey(id)) || ""; } catch { return ""; } }
+function ssSave(id, text){ try { text ? localStorage.setItem(ssKey(id), text) : localStorage.removeItem(ssKey(id)); } catch {} }
+function placeFor(cat){ for (const [re,p] of SS_PLACE) if (re.test(cat||"")) return p; return "Communion"; }
+function ssListHtml(){
+  const items = S.ssItems||[], date = svcDate(S.hyEditing);
+  if (!S.ssText) return "";
+  if (!items.length) return `<p>No hymn numbers found in what you pasted. Copy the list that shows numbers such as <b>ELW 659</b>.</p>`;
+  const inDraft = new Set((S.hyDraft||[]).map(r=>`${$(`h-${r.key}-book`)?.value||r.book||"ELW"} ${$(`h-${r.key}-num`)?.value||r.num||""}`.trim()));
+  return `<div class="sslist">${items.map((it,i)=>{
+    const last = it.book!=="Other" ? lastSung(it.book, it.num, date) : null;
+    const wks = last ? Math.round(diff(parse(date), parse(last))/7) : null;
+    const added = inDraft.has(`${it.book} ${it.num}`);
+    return `<div class="ssrow"><span class="hn">${esc(it.code)} ${esc(it.num)}</span>
+      <span style="min-width:0"><b>${esc(it.title||"(title not found)")}</b>${it.cat?` <span class="cat">${esc(it.cat)}</span>`:""}${last?`<br><span class="hint ${wks<=6?"recent":""}">Last sung ${fmtDay(parse(last))}${wks<=6?` (${wks} wk${wks===1?"":"s"} earlier)`:""}</span>`:""}</span>
+      <span class="ssact">${added?`<span class="done">✓ Added</span>`:`<select id="ss-place-${i}" aria-label="Where to add ${esc(it.title||it.code+" "+it.num)}">${PLACES.map(p=>`<option ${placeFor(it.cat)===p?"selected":""}>${esc(p)}</option>`).join("")}</select><button type="button" class="btn small" data-hact="ssadd" data-i="${i}">Add</button>`}</span></div>`;
+  }).join("")}</div>`;
+}
+function ssPanelHtml(s){
+  const n = (S.ssItems||[]).length;
+  return `<details class="ss" ${S.ssOpen?"open":""}><summary>Sundays &amp; Seasons suggestions${n?` (${n})`:""}</summary><div class="ssbody">
+    <p>1. <a href="${esc(ssUrl(s.date))}" target="_blank" rel="noopener noreferrer">Open Sundays &amp; Seasons ↗</a>, sign in, go to <b>${esc(fmtDay(parse(s.date)))}</b> and open its <b>Music</b> tab.<br>2. Select the suggested songs, copy them, and paste them below. The hymns are listed with when Zion last sang them; tap <b>Add</b> to put one in the service.</p>
+    <textarea id="ss-paste" rows="3" placeholder="Paste the Music suggestions here">${esc(S.ssText||"")}</textarea>
+    <div id="ss-list">${ssListHtml()}</div>
+    ${S.ssText?`<div class="row"><button type="button" class="btn link" data-hact="ssclear">Clear pasted list</button></div>`:""}
+  </div></details>`;
+}
+function ssAdd(i){
+  const it = (S.ssItems||[])[i]; if (!it) return;
+  const place = $(`ss-place-${i}`)?.value || placeFor(it.cat);
+  S.hyDraft = readDraft();
+  const note = it.book==="Other" ? `${it.code} ${it.num}` : "";
+  const fill = {book:it.book, num:it.num, title:it.title, ...(note?{note}:{})};
+  const fixed = S.hyDraft.find(r=>!r.extra && SLOT_PLACE[r.slot]===place && !r.num && !r.title);
+  if (fixed) Object.assign(fixed, fill);
+  else {
+    const n = 1 + Math.max(0, ...S.hyDraft.filter(r=>r.extra).map(r=>Number(r.key.slice(1))));
+    S.hyDraft.push({key:"x"+n, slot:"x"+n, extra:true, place, ...fill});
+  }
+  S.ssOpen = true; renderHymns();
+  toast(`${it.code} ${it.num} added as ${place}. Save hymns when you're done.`);
+}
+
 /* The editor works on a draft: the six standard spots plus any added rows */
 function draftFor(id){
   const items = S.hymns.get(id)?.items||[];
@@ -619,13 +708,14 @@ function rowHtml(r){
     ? `<select id="h-${r.key}-place" class="hplace" aria-label="Where this hymn falls in the service">${PLACES.map(p=>`<option ${placeOf(r)===p?"selected":""}>${esc(p)}</option>`).join("")}</select>`
     : `<span class="r">${SLOT_PLACE[r.slot]}</span>`;
   const lab = r.extra ? "Added hymn" : SLOT_PLACE[r.slot];
-  return `<div class="hyrow ${r.extra?"extra":""}" data-key="${r.key}">${label}
+  return `<div class="hyrow ${r.extra?"extra":""} ${!r.extra&&(r.num||r.title||r.note||r.link)?"filled":""}" data-key="${r.key}">${label}
     <select id="h-${r.key}-book" aria-label="${lab} hymnal">${HYMNALS.map(b=>`<option ${(r.book||"ELW")===b?"selected":""}>${b}</option>`).join("")}</select>
     <input id="h-${r.key}-num" class="hnum" inputmode="numeric" placeholder="#" value="${esc(r.num||"")}" aria-label="${lab} number">
     <input id="h-${r.key}-title" class="htitle" placeholder="Title" value="${esc(r.title||"")}" aria-label="${lab} title">
     <input id="h-${r.key}-note" class="hnote" placeholder="Verses, key, who leads" value="${esc(r.note||"")}" aria-label="${lab} note">
     <input id="h-${r.key}-link" class="hlink" type="text" inputmode="url" autocomplete="off" placeholder="Link to hear it performed (YouTube, etc.)" value="${esc(r.link||"")}" aria-label="${lab} performance link">
-    ${r.extra?`<button type="button" class="btn link hrm" data-hact="rm" data-key="${r.key}" aria-label="Remove this hymn">Remove</button>`:""}
+    ${r.extra?`<button type="button" class="btn link hrm" data-hact="rm" data-key="${r.key}" aria-label="Remove this hymn">Remove</button>`
+      :(r.num||r.title||r.note||r.link)?`<button type="button" class="btn link hrm" data-hact="clr" data-key="${r.key}" aria-label="Remove the ${esc(lab)} hymn">Remove</button>`:""}
     <span class="hint" id="h-${r.key}-hint"></span></div>`;
 }
 function renderHymns(){
@@ -639,14 +729,14 @@ function renderHymns(){
     const status = filled ? `<span class="tag full">${filled} hymn${filled===1?"":"s"}</span>` : `<span class="tag need">Not chosen</span>`;
     let body;
     if (S.hyEditing===s.id) {
-      body = `<form class="hyform" data-svc="${s.id}">${S.hyDraft.map(rowHtml).join("")}
-        <div class="row"><button class="btn small" type="button" data-hact="addrow">+ Add hymn</button></div>
+      body = `<form class="hyform" data-svc="${s.id}">${ssPanelHtml(s)}${S.hyDraft.map(rowHtml).join("")}
+        <div class="row"><button class="btn small" type="button" data-hact="addrow">+ Add hymn</button>${S.hyDraft.some(r=>r.extra||r.num||r.title||r.note||r.link)?`<button class="btn small danger" type="button" data-hact="clrall">Remove all hymns</button>`:""}</div>
         <div class="row"><button class="btn primary small" type="submit">Save hymns</button><button class="btn small" type="button" data-hact="cancel">Cancel</button></div></form>`;
     } else if (filled) {
       body = `<ol class="hyread">${ordered(items.filter(i=>i.num||i.title)).map(it=>
         `<li><span class="r">${esc(labelOf(it))}</span><span class="hn">${it.num?hymnLabel(it):""}</span><span><b>${esc(it.title||"")}</b>${it.note?` <span class="muted">· ${esc(it.note)}</span>`:""}${listenLink(it)?` ${listenLink(it)}`:""}</span></li>`).join("")}</ol>`;
     } else body = `<p class="muted" style="margin:0">${S.admin?"No hymns yet.":"Hymns haven't been chosen yet."}</p>`;
-    const btns = S.hyEditing===s.id ? "" : `<div class="row">${S.admin?`<button class="btn small" data-hact="edit" data-svc="${s.id}">${filled?"Edit hymns":"Add hymns"}</button>`:""}${filled?`<button class="btn small" data-hact="copy" data-svc="${s.id}">Copy hymn list</button>`:""}</div>`;
+    const btns = S.hyEditing===s.id ? "" : `<div class="row">${S.admin?`<button class="btn small" data-hact="edit" data-svc="${s.id}">${filled?"Edit hymns":"Add hymns"}</button>`:""}${filled?`<button class="btn small" data-hact="copy" data-svc="${s.id}">Copy hymn list</button>`:""}${S.admin?`<a class="btn small" href="${esc(ssUrl(s.date))}" target="_blank" rel="noopener noreferrer">Sundays &amp; Seasons ↗</a>`:""}</div>`;
     return `<article class="card" style="--lc:${s.lc}"><div class="stripe" aria-hidden="true"></div><div class="cbody">
       <div class="chead"><div><div class="when">${fmtDay(dt)} · ${fmtTime(s.time)}</div><h3 class="title">${esc(s.name)}</h3></div>${status}</div>
       ${body}${btns}</div></article>`;
@@ -666,12 +756,15 @@ function hintFor(key, date, fill=true){
 }
 $("hylist").addEventListener("input", e=>{
   const f = e.target.closest(".hyform"); if(!f) return;
+  if (e.target.id==="ss-paste"){ S.ssText = e.target.value; S.ssItems = parseSS(S.ssText); ssSave(S.hyEditing, S.ssText); $("ss-list").innerHTML = ssListHtml(); const sm=f.querySelector(".ss>summary"); if(sm) sm.textContent = `Sundays & Seasons suggestions${S.ssItems.length?` (${S.ssItems.length})`:""}`; return; }
   const m = e.target.id.match(/^h-(\w+)-(num|book)$/); if (m) hintFor(m[1], svcDate(f.dataset.svc));
 });
 $("hylist").addEventListener("click", async e=>{
   const b = e.target.closest("[data-hact]"); if(!b) return;
   const act = b.dataset.hact;
-  if (act==="edit"){ S.hyEditing=b.dataset.svc; S.hyDraft=draftFor(S.hyEditing); renderHymns(); $("h-gathering-num")?.focus(); }
+  if (act==="edit"){ S.hyEditing=b.dataset.svc; S.hyDraft=draftFor(S.hyEditing); S.ssText=ssLoad(S.hyEditing); S.ssItems=parseSS(S.ssText); S.ssOpen=!!S.ssText; renderHymns(); $("h-gathering-num")?.focus(); }
+  else if (act==="ssadd"){ ssAdd(Number(b.dataset.i)); }
+  else if (act==="ssclear"){ S.hyDraft=readDraft(); S.ssText=""; S.ssItems=[]; ssSave(S.hyEditing,""); S.ssOpen=true; renderHymns(); }
   else if (act==="cancel"){ S.hyEditing=null; S.hyDraft=null; renderHymns(); }
   else if (act==="addrow"){
     S.hyDraft = readDraft();
@@ -680,6 +773,15 @@ $("hylist").addEventListener("click", async e=>{
     renderHymns(); $(`h-x${n}-place`)?.focus();
   }
   else if (act==="rm"){ S.hyDraft = readDraft().filter(r=>r.key!==b.dataset.key); renderHymns(); }
+  else if (act==="clr"){
+    S.hyDraft = readDraft().map(r=>r.key===b.dataset.key ? {key:r.key, slot:r.slot, book:"ELW"} : r);
+    renderHymns(); toast("Hymn removed. Save hymns to keep the change.");
+  }
+  else if (act==="clrall"){
+    if (!b.dataset.armed){ b.dataset.armed="1"; b.textContent="Tap again to remove all"; return; }
+    S.hyDraft = HYMN_SLOTS.map(([slot])=>({key:slot, slot, book:"ELW"}));
+    renderHymns(); toast("All hymns removed. Save hymns to keep the change, or Cancel to undo.");
+  }
   else if (act==="copy"){
     const s = serviceList().find(x=>x.id===b.dataset.svc); const items = ordered((S.hymns.get(b.dataset.svc)?.items||[]).filter(i=>i.num||i.title));
     const lines = [`${s?s.name:""} — ${s?fmtDay(parse(s.date)):""}`];
@@ -687,6 +789,7 @@ $("hylist").addEventListener("click", async e=>{
     try { await navigator.clipboard.writeText(lines.join("\n")); toast("Hymn list copied."); } catch { toast("Copy isn't available here."); }
   }
 });
+$("hylist").addEventListener("toggle", e=>{ if (e.target.classList?.contains("ss")) S.ssOpen = e.target.open; }, true);
 $("hylist").addEventListener("submit", async e=>{
   e.preventDefault(); const id = e.target.dataset.svc;
   const items = readDraft().filter(r=>r.num||r.title).map(r=>{
