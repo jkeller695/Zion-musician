@@ -1,0 +1,6 @@
+# The site's files live in the zion-musicians/ subfolder.
+# No build step: Netlify publishes the plain files in zion-musicians/site.
+[build]
+  base = "zion-musicians"
+  publish = "site"
+  command = ""
