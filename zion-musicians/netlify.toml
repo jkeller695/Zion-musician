@@ -1,0 +1,5 @@
+# Netlify reads this when the project is linked to GitHub.
+# No build step: the site is plain files in the site/ folder.
+[build]
+  publish = "site"
+  command = ""

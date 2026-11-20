@@ -1,0 +1,1007 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Zion Worship Musicians</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2325467a'/%3E%3Cpath d='M16 6v20M9 12h14' stroke='white' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;600&family=Source+Sans+3:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: a single column of service cards grouped by month; each card carries its liturgical color as a parament-style stripe. */
+:root{
+  --bg:#f3f5f8; --surface:#ffffff; --sunk:#e9edf3; --line:#d6dce6;
+  --fg:#18202e; --muted:#5b6678; --accent:#25467a; --accent-fg:#ffffff; --accent-soft:#e2e9f5;
+  --ok:#2f6b46; --warn:#9a5a00; --warn-soft:#fbf0de; --danger:#a3312b;
+  --lc-green:#3f7d4e; --lc-white:#c9b77a; --lc-blue:#2c5aa0; --lc-purple:#6b3f8f; --lc-red:#b8352d; --lc-scarlet:#8e1f2b; --lc-gold:#c9a227;
+  --display:"EB Garamond",Georgia,"Times New Roman",serif;
+  --body:"Source Sans 3",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#11151c; --surface:#1a2029; --sunk:#151a22; --line:#2c3543;
+  --fg:#e7ebf1; --muted:#9aa5b6; --accent:#8fb0e6; --accent-fg:#0e1420; --accent-soft:#223149;
+  --ok:#7cc495; --warn:#e6b25c; --warn-soft:#3a2d17; --danger:#ef8a83;
+  --lc-white:#d9c98f; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#11151c; --surface:#1a2029; --sunk:#151a22; --line:#2c3543;
+  --fg:#e7ebf1; --muted:#9aa5b6; --accent:#8fb0e6; --accent-fg:#0e1420; --accent-soft:#223149;
+  --ok:#7cc495; --warn:#e6b25c; --warn-soft:#3a2d17; --danger:#ef8a83;
+  --lc-white:#d9c98f; color-scheme:dark}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+[hidden]{display:none!important}
+img{max-width:100%}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.45}
+.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:20px 48px;display:flex;flex-direction:column;gap:18px}
+header{display:flex;flex-direction:column;gap:4px}
+.eyebrow{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:600}
+h1{font-family:var(--display);font-weight:600;font-size:clamp(28px,5vw,38px);line-height:1.1;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:0;max-width:60ch}
+.banner{background:var(--warn-soft);color:var(--fg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-size:14px}
+.banner b{color:var(--warn)}
+.summary{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px}
+.stat{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.stat .k{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.stat .v{font-size:20px;font-weight:700;font-variant-numeric:tabular-nums}
+.stat .d{font-size:13px;color:var(--muted)}
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;justify-content:space-between}
+.tabs{display:flex;gap:4px;background:var(--sunk);border:1px solid var(--line);border-radius:8px;padding:3px}
+.tabs button{border:0;background:transparent;color:var(--muted);font:600 14px var(--body);padding:6px 12px;border-radius:6px;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:var(--surface);color:var(--fg);box-shadow:0 1px 2px rgb(0 0 0 / .08)}
+button{font-family:var(--body)}
+.btn{border:1px solid var(--line);background:var(--surface);color:var(--fg);font-weight:600;font-size:14px;padding:7px 12px;border-radius:6px;cursor:pointer}
+.btn:hover{border-color:var(--accent)}
+.btn.primary{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.btn.small{font-size:13px;padding:4px 9px}
+.btn.danger{color:var(--danger)}
+.btn.link{border:0;background:none;padding:2px 4px;color:var(--accent);text-decoration:underline;text-underline-offset:2px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.admin{background:var(--surface);border:1px dashed var(--accent);border-radius:8px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.admin h2{font-size:15px;margin:0;display:flex;gap:8px;align-items:center}
+.pill{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+.suggest{display:flex;flex-wrap:wrap;gap:6px}
+.suggest button{border:1px solid var(--line);background:var(--sunk);color:var(--fg);border-radius:999px;padding:4px 10px;font-size:13px;cursor:pointer}
+.suggest button:hover{border-color:var(--accent)}
+form.add{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;align-items:end}
+label.f{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--muted);font-weight:600}
+input,select,textarea{font:inherit;font-size:14px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:6px;padding:6px 8px;min-width:0}
+.month{font-family:var(--display);font-size:22px;font-weight:600;margin:8px 0 -6px}
+.list{display:flex;flex-direction:column;gap:12px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;display:grid;grid-template-columns:8px 1fr;overflow:hidden}
+.stripe{background:var(--lc,var(--lc-green))}
+.cbody{padding:12px 14px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.chead{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:space-between}
+.when{font-family:var(--mono);font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.title{font-family:var(--display);font-size:20px;font-weight:600;line-height:1.2;margin:0;text-wrap:balance}
+.meta{display:flex;flex-wrap:wrap;gap:6px;align-items:center;font-size:13px;color:var(--muted)}
+.season{display:inline-flex;gap:5px;align-items:center}
+.season i{width:10px;height:10px;border-radius:50%;background:var(--lc);display:inline-block;border:1px solid var(--line)}
+.tag{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 6px;border-radius:4px;background:var(--accent-soft);color:var(--accent)}
+.tag.full{background:transparent;color:var(--ok);border:1px solid currentColor}
+.tag.need{background:var(--warn-soft);color:var(--warn)}
+.note{font-size:14px;background:var(--sunk);border-radius:6px;padding:6px 9px}
+.slots{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.slot{border:1px solid var(--line);border-radius:8px;padding:7px 9px;display:flex;flex-direction:column;gap:2px;min-width:0;background:var(--bg)}
+.slot .r{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.slot .who{display:flex;align-items:center;gap:6px;min-width:0;justify-content:space-between}
+.slot .nm{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.slot.open{border-style:dashed;cursor:pointer;background:transparent}
+.slot.open .nm{color:var(--accent)}
+.slot.open:hover{border-color:var(--accent);background:var(--accent-soft)}
+.slot.mine{border-color:var(--accent);background:var(--accent-soft)}
+.confirm{display:flex;flex-wrap:wrap;gap:8px;align-items:center;background:var(--accent-soft);border-radius:8px;padding:8px 10px;font-size:14px}
+.edit{display:flex;flex-direction:column;gap:8px;border-top:1px solid var(--line);padding-top:10px}
+.steppers{display:flex;flex-wrap:wrap;gap:10px}
+.stepper{display:flex;align-items:center;gap:6px;font-size:14px}
+.stepper input{width:56px}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.empty{color:var(--muted);text-align:center;padding:24px;border:1px dashed var(--line);border-radius:10px}
+.more{align-self:center}
+.toast{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(16px + env(safe-area-inset-bottom,0px));background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-weight:600;font-size:14px;max-width:calc(100% - 32px)}
+.views{display:flex;gap:0;border-bottom:1px solid var(--line);overflow-x:auto;scrollbar-width:none}
+.views::-webkit-scrollbar{display:none}
+#app>*,.wrap>*{min-width:0}
+.slot.open{text-align:left}
+@media (max-width:560px){.views button{padding:8px 9px;font-size:15px;white-space:nowrap}}
+.views button{border:0;background:none;font:600 16px var(--body);color:var(--muted);padding:8px 14px;border-bottom:3px solid transparent;margin-bottom:-1px;cursor:pointer}
+.views button[aria-pressed="true"]{color:var(--fg);border-bottom-color:var(--accent)}
+.out{font-size:13px;color:var(--warn)}
+.conflict{font-size:11px;font-weight:700;color:var(--warn);text-transform:uppercase;letter-spacing:.05em}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:10px}
+.panel p{margin:0;color:var(--muted);font-size:14px}
+.calnav{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.calnav h2{font-family:var(--display);font-size:22px;font-weight:600;margin:0}
+.calwrap{overflow-x:auto}
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;min-width:300px}
+.dow{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:center;padding-block:2px}
+.day{border:1px solid var(--line);background:var(--surface);border-radius:6px;min-height:76px;padding:4px 5px;display:flex;flex-direction:column;gap:3px;align-items:stretch;text-align:left;cursor:pointer;color:var(--fg);font:inherit;min-width:0}
+.day:hover{border-color:var(--accent)}
+.day.past{opacity:.45;cursor:default}
+.day.blank{visibility:hidden}
+.day .dn{display:flex;justify-content:space-between;align-items:baseline;gap:2px;font-family:var(--mono);font-size:13px}
+.day .svc{font-family:var(--body);font-size:10px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.day.service{border-color:var(--accent);background:var(--accent-soft)}
+.day.me{background:var(--warn-soft);border-color:var(--warn)}
+.chip{font-size:11px;line-height:1.25;padding:1px 4px;border-radius:3px;background:var(--sunk);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip.mine{background:var(--warn);color:var(--surface);font-weight:700}
+.more-n{font-size:11px;color:var(--muted)}
+.outlist{display:flex;flex-direction:column;gap:6px;font-size:14px}
+.outlist div{display:flex;gap:10px;flex-wrap:wrap}
+.outlist .when{min-width:110px}
+.muted{color:var(--muted)}
+.hyline{font-size:14px;display:flex;flex-wrap:wrap;gap:4px 6px;align-items:baseline}
+.hyline .r,.hyrow .r,.hyread .r{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--muted)}
+.hyline .sep{color:var(--line)}
+.hyread{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.hyread li{display:grid;grid-template-columns:120px 64px 1fr;gap:8px;align-items:baseline;min-width:0}
+.hyread .hn,.hnum{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.hyform{display:flex;flex-direction:column;gap:10px}
+.hyrow{display:grid;grid-template-columns:120px 76px 72px minmax(0,1.4fr) minmax(0,1fr);gap:6px;align-items:center}
+.hyrow .hint{grid-column:3 / -1;font-size:12px;color:var(--muted)}
+.hyrow .hint:empty{display:none}
+.hyrow.extra{border-top:1px dashed var(--line);padding-top:6px}
+.hyrow .hplace{font-size:12px;font-weight:600;min-width:0}
+.hyrow .hrm{grid-column:-2;justify-self:end;color:var(--danger)}
+.hyrow .hlink{grid-column:3 / -1}
+.hyrow.extra .hlink{grid-column:3 / -2}
+.hylisten{font-size:13px;font-weight:600;white-space:nowrap}
+.hyrow .hint.recent{color:var(--warn);font-weight:600}
+@media (max-width:640px){.hyrow{grid-template-columns:76px 72px minmax(0,1fr)}.hyrow .r,.hyrow .hplace{grid-column:1 / -1}.hyrow .hnote,.hyrow .hlink,.hyrow.extra .hlink{grid-column:1 / -1}.hyrow .hint{grid-column:1 / -1}
+.hyread li{grid-template-columns:56px 1fr}.hyread .r{grid-column:1 / -1}}
+@media (max-width:560px){.day{min-height:52px}.day .chip{display:none}.day .svc{font-size:9px}}
+@media (prefers-reduced-motion:no-preference){.card{transition:border-color .15s}}
+.topbar{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:flex-start;justify-content:space-between}
+.userbar{display:flex;gap:8px;align-items:center;font-size:14px;color:var(--muted)}
+.gate{max-width:520px}
+.gate h2{font-family:var(--display);font-size:24px;font-weight:600;margin:0}
+.gate form{display:flex;flex-direction:column;gap:10px}
+.gate input{font-size:16px;padding:9px 10px}
+.gate .btn.primary{padding:9px 14px;font-size:15px;align-self:flex-start}
+.gate .err{color:var(--danger);font-size:14px}
+.plist{display:flex;flex-direction:column}
+.prow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;align-items:center;padding-block:8px;border-top:1px solid var(--line)}
+.prow .pn{font-weight:600}
+.prow .pe{font-size:13px;color:var(--muted);overflow-wrap:anywhere}
+.prow .pa{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="topbar">
+    <div style="display:flex;flex-direction:column;gap:4px;min-width:0">
+      <div class="eyebrow">Zion Lutheran Church · Camas</div>
+      <h1>Worship Musicians Sign-Up</h1>
+      <p class="sub">Pick an open spot for any upcoming service. Each service needs 3 singers, an accompanist, drums and guitar unless noted.</p>
+    </div>
+    <div class="userbar" id="userbar" hidden><span id="me-name"></span><button class="btn small" data-signout>Sign out</button></div>
+  </header>
+
+  <section class="panel gate" id="gate" aria-live="polite">
+    <div id="g-loading"><p>Loading…</p></div>
+    <div id="g-login" hidden>
+      <form id="loginForm">
+        <h2>Sign in</h2>
+        <p>Enter your email and we'll send you a sign-in link. No password needed.</p>
+        <label class="f">Email<input type="email" id="l-email" autocomplete="email" inputmode="email" required></label>
+        <button class="btn primary" type="submit" id="l-send">Email me a sign-in link</button>
+        <span class="err" id="l-err" hidden></span>
+      </form>
+    </div>
+    <div id="g-sent" hidden>
+      <h2>Check your email</h2>
+      <p>We sent a sign-in link to <b id="g-sent-to"></b>. Tap the link in that email and you'll come back here signed in. It can take a minute to arrive; check your spam folder if you don't see it.</p>
+      <p style="margin-top:8px"><button class="btn small" id="g-back">Use a different email</button></p>
+    </div>
+    <div id="g-notlisted" hidden>
+      <h2>You're not on the musician list yet</h2>
+      <p>You're signed in as <b id="g-email"></b>, but that email isn't on Zion's musician list. Ask the music director to add it, then reload this page.</p>
+      <p style="margin-top:8px"><button class="btn small" data-signout>Sign out</button></p>
+    </div>
+    <div id="g-error" hidden>
+      <h2>Can't reach the sign-up sheet</h2>
+      <p id="g-error-msg">Check your internet connection and reload the page.</p>
+    </div>
+  </section>
+
+  <div id="app" hidden style="display:flex;flex-direction:column;gap:18px">
+
+  <div class="banner" id="demo" hidden><b>Demo mode.</b> This copy isn't connected to the church database yet, so the names are examples and nothing you change is saved. Add the Supabase details to <code>config.js</code> to go live (see DEPLOY.md).</div>
+
+  <section class="summary" id="summary" aria-label="Summary"></section>
+
+  <div class="views" role="group" aria-label="View">
+    <button id="v-sched" data-v="services" aria-pressed="true">Schedule</button>
+    <button id="v-avail" data-v="avail" aria-pressed="false">Availability</button>
+    <button id="v-hymns" data-v="hymns" aria-pressed="false">Hymns</button>
+    <button id="v-people" data-v="people" aria-pressed="false" hidden>Musicians</button>
+  </div>
+
+  <section id="people" class="panel" hidden aria-label="Musician list">
+    <p>Only people on this list can sign in. Add each musician's email here, then tell them the site address. Directors can also add services, choose hymns and assign musicians.</p>
+    <form class="add" id="addMember">
+      <label class="f">Name<input id="pm-name" maxlength="80" required placeholder="e.g. Brandon"></label>
+      <label class="f">Email<input id="pm-email" type="email" required placeholder="name@example.com"></label>
+      <label class="stepper"><input type="checkbox" id="pm-dir" style="width:auto"> Director</label>
+      <button class="btn primary" type="submit">Add musician</button>
+    </form>
+    <div class="plist" id="plist"></div>
+  </section>
+
+  <section id="hymns" hidden aria-label="Hymns by service">
+    <div style="display:flex;flex-direction:column;gap:12px">
+      <p class="sub" id="hy-intro"></p>
+      <div class="list" id="hylist"></div>
+      <button class="btn more" id="hy-more">Show 8 more weeks</button>
+    </div>
+  </section>
+
+  <section id="avail" class="panel" hidden aria-label="Availability calendar">
+    <p>Tap any date you can't play. Tap it again to clear it. The director sees these dates on the schedule.</p>
+    <div class="row">
+      <label class="f" id="m-who-wrap" hidden>Marking for
+        <select id="m-who"><option value="me">Myself</option><option value="other">Another musician</option></select></label>
+      <label class="f" id="m-name-wrap" hidden>Musician's name<input id="m-name" placeholder="e.g. Gary" maxlength="60"></label>
+      <label class="f">Role<select id="m-role"><option value="singer">Singer</option><option value="accompanist">Accompanist</option><option value="drums">Drums</option><option value="guitar">Guitar</option></select></label>
+    </div>
+    <div class="calnav"><button class="btn small" id="cal-prev" aria-label="Previous month">‹ Prev</button><h2 id="cal-title"></h2><button class="btn small" id="cal-next" aria-label="Next month">Next ›</button></div>
+    <div class="calwrap"><div class="cal" id="cal"></div></div>
+    <h3 style="margin:4px 0 0;font-size:15px">Unavailable this month</h3>
+    <div class="outlist" id="outlist"></div>
+  </section>
+
+  <div id="sched">
+  <div style="display:flex;flex-direction:column;gap:18px">
+  <div class="toolbar">
+    <div class="tabs" role="group" aria-label="Filter services">
+      <button id="f-all" data-f="all" aria-pressed="true">All services</button>
+      <button id="f-open" data-f="open" aria-pressed="false">Needs musicians</button>
+      <button id="f-mine" data-f="mine" aria-pressed="false">My sign-ups</button>
+    </div>
+    <span class="when" id="who"></span>
+  </div>
+
+  <section class="admin" id="admin" hidden aria-label="Music director tools">
+    <h2><span class="pill">Director</span> Add a special service</h2>
+    <div class="suggest" id="suggest"></div>
+    <form class="add" id="addForm">
+      <label class="f">Date<input type="date" id="a-date" required></label>
+      <label class="f">Time<input type="time" id="a-time" value="19:00" required></label>
+      <label class="f" style="grid-column:span 2">Service name<input id="a-name" placeholder="e.g. Christmas Eve Candlelight" required></label>
+      <button class="btn primary" type="submit">Add service</button>
+    </form>
+  </section>
+
+  <div class="list" id="list"></div>
+  <button class="btn more" id="more">Show 8 more weeks</button>
+  </div>
+  </div>
+  </div>
+</div>
+<div class="toast" id="toast" hidden></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.117.2/dist/umd/supabase.js"></script>
+<script src="config.js"></script>
+<script>
+(() => {
+"use strict";
+const ROLES = [["singer","Singer"],["accompanist","Accompanist"],["drums","Drums"],["guitar","Guitar"]];
+const DEFAULT_SLOTS = {singer:3, accompanist:1, drums:1, guitar:1};
+const $ = id => document.getElementById(id);
+
+/* ---------- dates ---------- */
+const D = (y,m,d) => new Date(Date.UTC(y,m-1,d));
+const add = (dt,n) => new Date(dt.getTime() + n*864e5);
+const key = dt => dt.toISOString().slice(0,10);
+const parse = k => { const [y,m,d] = k.split("-").map(Number); return D(y,m,d); };
+const diff = (a,b) => Math.round((a-b)/864e5);
+const now = new Date();
+const TODAY = D(now.getFullYear(), now.getMonth()+1, now.getDate());
+const fmtDay = dt => dt.toLocaleDateString("en-US",{weekday:"short",month:"short",day:"numeric",timeZone:"UTC"});
+const fmtMonth = dt => dt.toLocaleDateString("en-US",{month:"long",year:"numeric",timeZone:"UTC"});
+const fmtTime = t => { const [h,m] = t.split(":").map(Number); return `${((h+11)%12)+1}:${String(m).padStart(2,"0")} ${h<12?"a.m.":"p.m."}`; };
+
+function easter(y){
+  const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),
+    h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),
+    mo=Math.floor((h+l-7*m+114)/31),da=((h+l-7*m+114)%31)+1;
+  return D(y,mo,da);
+}
+const advent1 = y => { const n = D(y,11,27); return add(n,(7-n.getUTCDay())%7); };
+const ord = n => n + (["th","st","nd","rd"][(n%100>10&&n%100<14)?0:Math.min(n%10,4)%4] || "th");
+const ordWord = n => ["","First","Second","Third","Fourth","Fifth","Sixth","Seventh","Eighth"][n] || ord(n);
+
+/* Revised Common Lectionary / ELCA Sunday names and paraments */
+function sunday(dt){
+  const y = dt.getUTCFullYear(), E = easter(y), A1 = advent1(y), P = add(E,49);
+  const C = c => `var(--lc-${c})`;
+  if (dt >= A1) {
+    const n = diff(dt,A1)/7+1;
+    if (n<=4) return {name:`${ordWord(n)} Sunday of Advent`, season:"Advent", lc:C("blue")};
+    return {name:"First Sunday of Christmas", season:"Christmas", lc:C("white")};
+  }
+  if (dt < D(y,1,6)) return {name:"Second Sunday of Christmas", season:"Christmas", lc:C("white")};
+  const bap = add(D(y,1,7),(7-D(y,1,7).getUTCDay())%7), tr = add(E,-49);
+  if (+dt===+bap) return {name:"Baptism of Our Lord", season:"Time after Epiphany", lc:C("white")};
+  if (+dt===+tr) return {name:"Transfiguration of Our Lord", season:"Time after Epiphany", lc:C("white")};
+  if (dt < tr) return {name:`${ordWord(diff(dt,bap)/7+1)} Sunday after Epiphany`, season:"Time after Epiphany", lc:C("green")};
+  if (dt < add(E,-7)) return {name:`${ordWord(diff(dt,add(E,-42))/7+1)} Sunday in Lent`, season:"Lent", lc:C("purple")};
+  if (+dt===+add(E,-7)) return {name:"Sunday of the Passion / Palm Sunday", season:"Holy Week", lc:C("scarlet")};
+  if (+dt===+E) return {name:"Resurrection of Our Lord", season:"Easter", lc:C("white")};
+  if (dt < P) return {name:`${ordWord(diff(dt,E)/7+1)} Sunday of Easter`, season:"Easter", lc:C("white")};
+  if (+dt===+P) return {name:"Day of Pentecost", season:"Pentecost", lc:C("red")};
+  if (+dt===+add(P,7)) return {name:"The Holy Trinity", season:"Time after Pentecost", lc:C("white")};
+  if (+dt===+add(A1,-7)) return {name:"Christ the King", season:"Time after Pentecost", lc:C("white")};
+  const after = `${ord(diff(dt,P)/7)} Sunday after Pentecost`;
+  if (dt.getUTCMonth()===9 && dt.getUTCDate()>=25) return {name:"Reformation Sunday", alt:after, season:"Time after Pentecost", lc:C("red")};
+  if (dt.getUTCMonth()===10 && dt.getUTCDate()<=7) return {name:"All Saints Sunday", alt:after, season:"Time after Pentecost", lc:C("white")};
+  return {name:after, season:"Time after Pentecost", lc:C("green")};
+}
+function seasonFor(dt){ const s = add(dt,(7-dt.getUTCDay())%7); return sunday(s); }
+
+function suggestions(){
+  const out = [], y0 = TODAY.getUTCFullYear();
+  for (const y of [y0, y0+1]) {
+    const E = easter(y);
+    const nov1 = D(y,11,1), thu4 = add(nov1, ((4-nov1.getUTCDay()+7)%7)+21);
+    out.push([add(thu4,-1),"Thanksgiving Eve","19:00"], [D(y,12,24),"Christmas Eve","19:00"],
+      [add(E,-46),"Ash Wednesday","19:00"], [add(E,-3),"Maundy Thursday","19:00"],
+      [add(E,-2),"Good Friday","19:00"], [add(E,-1),"Easter Vigil","19:30"], [add(E,39),"Ascension of Our Lord","19:00"]);
+    for (let w=1; w<=5; w++) out.push([add(E,-46+7*w), `Lenten Midweek ${w}`, "18:30"]);
+  }
+  const limit = add(TODAY, 240);
+  return out.filter(([d]) => d >= TODAY && d <= limit).sort((a,b)=>a[0]-b[0]);
+}
+
+/* ---------- state ---------- */
+const S = { services:new Map(), signups:new Map(), me:null, admin:false, filter:"all", weeks:12,
+  pending:null, editing:null, names:{}, live:false, myName:"", people:[],
+  view:"services", hymns:new Map(), hyEditing:null, hyDraft:null, unavail:new Map(), named:new Map(), calMonth:D(TODAY.getUTCFullYear(), TODAY.getUTCMonth()+(add(TODAY,7).getUTCMonth()!==TODAY.getUTCMonth()?2:1), 1) };
+let db = null;
+const ROLE_LABEL = Object.fromEntries(ROLES);
+const slug = n => "n-" + n.toLowerCase().trim().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"").slice(0,60);
+
+/* Everyone marked unavailable on a date: [{uid|name, role, mine}] */
+function outOn(k){
+  const out = [];
+  for (const [uid,o] of S.unavail) if (o?.dates?.[k]) out.push({uid, role:o.dates[k], mine:uid===S.me});
+  for (const [,o] of S.named) if (o?.dates?.[k]) out.push({name:o.name, role:o.dates[k], mine:false});
+  return out;
+}
+const outLabel = p => p.name || (p.mine ? "You" : (S.names[p.uid] || "A musician"));
+function isOut(su, k){
+  if (su.uid && S.unavail.get(su.uid)?.dates?.[k]) return true;
+  if (su.name){ const o = S.named.get(slug(su.name)); if (o?.dates?.[k]) return true; }
+  return false;
+}
+
+function serviceList(){
+  const end = add(TODAY, S.weeks*7), out = [];
+  let s = add(TODAY,(7-TODAY.getUTCDay())%7);
+  for (; s < end; s = add(s,7)) {
+    const id = "sun-"+key(s), o = S.services.get(id) || {};
+    const L = sunday(s);
+    out.push({id, kind:"sunday", date:key(s), time:o.time||"10:00", name:L.name, alt:L.alt, season:L.season, lc:L.lc,
+      slots:{...DEFAULT_SLOTS, ...(o.slots||{})}, note:o.note||"", cancelled:!!o.cancelled});
+  }
+  for (const [id,o] of S.services) {
+    if (o.kind!=="special") continue;
+    const dt = parse(o.date); if (dt < TODAY || dt >= end) continue;
+    const L = seasonFor(dt);
+    out.push({id, kind:"special", date:o.date, time:o.time||"19:00", name:o.name, season:L.season,
+      lc:o.name.match(/Good Friday|Maundy/)?"var(--lc-scarlet)":o.name.match(/Ash|Lent/)?"var(--lc-purple)":o.name.match(/Christmas|Easter|Ascension/)?"var(--lc-white)":L.lc,
+      slots:{...DEFAULT_SLOTS, ...(o.slots||{})}, note:o.note||""});
+  }
+  return out.sort((a,b)=> (a.date+a.time).localeCompare(b.date+b.time));
+}
+const slotId = (sid,role,n) => `${sid}~${role}~${n}`;
+function fillOf(svc){
+  let total=0, filled=0, mine=false;
+  for (const [r] of ROLES) for (let n=1;n<=svc.slots[r];n++){ total++; const s=S.signups.get(slotId(svc.id,r,n)); if(s){filled++; if(s.uid===S.me) mine=true;} }
+  return {total, filled, mine};
+}
+
+/* ---------- rendering ---------- */
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const nameOf = uid => uid===S.me ? "You" : (S.names[uid] || "A musician");
+
+function render(){
+  if (S.view==="avail") renderCal();
+  if (S.view==="hymns" && !S.hyEditing) renderHymns();
+  const svcs = serviceList().filter(s=>!s.cancelled || S.admin);
+  // summary
+  const next = svcs.find(s=>!s.cancelled);
+  const nf = next ? fillOf(next) : null;
+  let open=0, mineCount=0, needy=0;
+  for (const s of svcs){ if(s.cancelled) continue; const f=fillOf(s); open+=f.total-f.filled; if(f.mine) mineCount++; if(f.filled<f.total) needy++; }
+  $("summary").hidden = S.view==="people";
+  $("summary").innerHTML = `
+    <div class="stat"><span class="k">Next service</span><span class="v">${next?fmtDay(parse(next.date)):"—"}</span><span class="d">${next?`${nf.filled} of ${nf.total} spots filled`:""}</span></div>
+    <div class="stat"><span class="k">Open spots</span><span class="v">${open}</span><span class="d">across ${needy} service${needy===1?"":"s"}</span></div>
+    <div class="stat"><span class="k">You're playing</span><span class="v">${mineCount}</span><span class="d">upcoming service${mineCount===1?"":"s"}</span></div>`;
+
+  const shown = svcs.filter(s=>{ const f=fillOf(s);
+    return S.filter==="all" || (S.filter==="open" && f.filled<f.total && !s.cancelled) || (S.filter==="mine" && f.mine); });
+  const list = $("list");
+  if (!shown.length){
+    list.innerHTML = `<div class="empty">${S.filter==="mine"?"You haven't signed up for anything yet. Choose “All services” and tap an open spot.":"Every spot in this window is filled. Thank you, musicians!"}</div>`;
+    return;
+  }
+  let html="", month="";
+  for (const s of shown){
+    const dt = parse(s.date), m = fmtMonth(dt);
+    if (m!==month){ html += `<h2 class="month">${m}</h2>`; month=m; }
+    html += card(s);
+  }
+  list.innerHTML = html;
+}
+
+function card(s){
+  const f = fillOf(s), dt = parse(s.date);
+  const status = s.cancelled ? `<span class="tag need">Cancelled</span>` : f.filled===f.total ? `<span class="tag full">Full</span>` : `<span class="tag need">${f.total-f.filled} open</span>`;
+  let slots="";
+  for (const [r,label] of ROLES) for (let n=1;n<=s.slots[r];n++){
+    const id = slotId(s.id,r,n), su = S.signups.get(id), lab = s.slots[r]>1?`${label} ${n}`:label;
+    if (!su) slots += `<button class="slot open" data-act="pick" data-slot="${id}" data-label="${esc(lab)}" data-svc="${s.id}" ${s.cancelled?"disabled":""}><span class="r">${esc(lab)}</span><span class="who"><span class="nm">Open · Sign up</span></span></button>`;
+    else { const mine = su.uid===S.me, warn = isOut(su, s.date);
+      slots += `<div class="slot ${mine?"mine":""}"><span class="r">${esc(lab)}${su.example?" · example":""}</span><span class="who"><span class="nm">${esc(su.example||su.name||nameOf(su.uid))}</span>${mine?`<button class="btn link" data-act="drop" data-slot="${id}">Withdraw</button>`:S.admin?`<button class="btn link" data-act="drop" data-slot="${id}">Remove</button>`:""}</span>${warn?`<span class="conflict">Marked unavailable</span>`:""}</div>`; }
+  }
+  const outs = outOn(s.date);
+  const outLine = outs.length ? `<div class="out">Unavailable: ${outs.map(p=>`${esc(outLabel(p))} (${ROLE_LABEL[p.role]||p.role})`).join(", ")}</div>` : "";
+  const meOut = S.me && S.unavail.get(S.me)?.dates?.[s.date];
+  const confirm = S.pending && S.pending.svc===s.id ? `<div class="confirm" role="group"><span>Sign up as <b>${esc(S.pending.label)}</b> on ${fmtDay(dt)}?${meOut?` <span class="conflict">You marked this date unavailable</span>`:""}</span><button class="btn primary small" data-act="confirm">Sign me up</button><button class="btn small" data-act="cancel">Cancel</button>${S.admin?`<span class="row" style="flex-basis:100%"><label class="f" style="flex-direction:row;align-items:center;gap:6px">Or assign<select id="as-pick"><option value="">Choose a musician…</option>${assignNames().map(n=>`<option>${esc(n)}</option>`).join("")}<option value="__other">Someone not on the list…</option></select></label><input id="as-name" placeholder="Their name" maxlength="60" aria-label="Name of someone not on the list" hidden><button class="btn small" data-act="assign">Assign</button></span>`:""}</div>` : "";
+  const edit = S.editing===s.id ? editor(s) : "";
+  const adminBtns = S.admin && S.editing!==s.id ? `<div class="row"><button class="btn small" data-act="edit" data-svc="${s.id}">Edit spots &amp; notes</button>${s.kind==="sunday"?"":`<button class="btn small danger" data-act="delsvc" data-svc="${s.id}">Delete service</button>`}${f.filled?`<button class="btn small" data-act="copy" data-svc="${s.id}">Copy roster</button><button class="btn small" data-act="mail" data-svc="${s.id}">Email everyone</button>`:""}</div>` : "";
+  return `<article class="card" style="--lc:${s.lc}"><div class="stripe" aria-hidden="true"></div><div class="cbody">
+    <div class="chead"><div><div class="when">${fmtDay(dt)} · ${fmtTime(s.time)}</div><h3 class="title">${esc(s.name)}</h3></div>${status}</div>
+    <div class="meta"><span class="season"><i></i>${esc(s.season)}</span>${s.alt?`<span>· ${esc(s.alt)}</span>`:""}${s.kind==="special"?`<span class="tag">Special service</span>`:""}</div>
+    ${s.note?`<div class="note">${esc(s.note)}</div>`:""}${hymnLine(s)}${outLine}
+    <div class="slots">${slots}</div>${confirm}${adminBtns}${edit}</div></article>`;
+}
+
+function editor(s){
+  return `<form class="edit" data-svc="${s.id}"><div class="steppers">${ROLES.map(([r,l])=>
+    `<label class="stepper">${l}<input type="number" min="0" max="8" id="e-${r}" value="${s.slots[r]}"></label>`).join("")}</div>
+    <label class="f">Time<input type="time" id="e-time" value="${s.time}" style="max-width:140px"></label>
+    <label class="f">Note for musicians (rehearsal time, songs, attire)<textarea id="e-note" rows="2">${esc(s.note)}</textarea></label>
+    <div class="row"><button class="btn primary small" type="submit">Save</button><button class="btn small" type="button" data-act="cancel">Cancel</button>
+    ${s.kind==="sunday"?`<label class="stepper"><input type="checkbox" id="e-cancel" style="width:auto" ${s.cancelled?"checked":""}> No service this Sunday</label>`:""}</div></form>`;
+}
+
+function renderAdmin(){
+  $("admin").hidden = !S.admin;
+  if (!S.admin) return;
+  const have = new Set([...S.services.values()].filter(o=>o.kind==="special").map(o=>o.date+o.name));
+  $("suggest").innerHTML = `<span class="when" style="align-self:center">From the church year:</span>` + suggestions().filter(([d,n])=>!have.has(key(d)+n)).slice(0,8)
+    .map(([d,n,t])=>`<button type="button" data-sug="${key(d)}|${esc(n)}|${t}">${esc(n)} · ${fmtDay(d)}</button>`).join("");
+}
+
+let toastT;
+/* ---------- availability calendar ---------- */
+function serviceDays(from, to){
+  const m = new Map();
+  for (let s = add(from,(7-from.getUTCDay())%7); s < to; s = add(s,7)) {
+    const o = S.services.get("sun-"+key(s)); if (!o?.cancelled) m.set(key(s), "Sunday "+fmtTime(o?.time||"10:00").replace(/:00 /," "));
+  }
+  for (const o of S.services.values()) if (o.kind==="special" && o.date>=key(from) && o.date<key(to)) m.set(o.date, o.name);
+  return m;
+}
+function target(){
+  if (S.admin && $("m-who").value==="other") {
+    const name = $("m-name").value.trim();
+    return name ? {kind:"named", id:slug(name), name} : null;
+  }
+  return S.me ? {kind:"me", id:S.me} : null;
+}
+function renderCal(){
+  const isAdmin = S.admin;
+  $("m-who-wrap").hidden = !isAdmin;
+  $("m-name-wrap").hidden = !(isAdmin && $("m-who").value==="other");
+  const first = S.calMonth, next = D(first.getUTCFullYear(), first.getUTCMonth()+2, 1);
+  $("cal-title").textContent = fmtMonth(first);
+  $("cal-prev").disabled = first <= D(TODAY.getUTCFullYear(), TODAY.getUTCMonth()+1, 1);
+  const svc = serviceDays(first, next), t = target();
+  const tDates = t ? (t.kind==="me" ? S.unavail.get(t.id)?.dates : S.named.get(t.id)?.dates) || {} : {};
+  let html = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"].map(d=>`<div class="dow">${d}</div>`).join("");
+  for (let i=0;i<first.getUTCDay();i++) html += `<div class="day blank" aria-hidden="true"></div>`;
+  for (let d = first; d < next; d = add(d,1)) {
+    const k = key(d), past = d < TODAY, outs = outOn(k), mineOut = !!tDates[k];
+    const chips = outs.slice(0,3).map(p=>`<span class="chip ${(t&&((t.kind==="me"&&p.uid===t.id)||(t.kind==="named"&&p.name&&slug(p.name)===t.id)))?"mine":""}">${esc(outLabel(p))}</span>`).join("");
+    const more = outs.length>3 ? `<span class="more-n">+${outs.length-3} more</span>` : (outs.length && window.innerWidth<=560 ? `<span class="more-n">${outs.length} out</span>` : "");
+    html += `<button class="day ${past?"past":""} ${svc.has(k)?"service":""} ${mineOut?"me":""}" data-day="${k}" ${past?"disabled":""}
+      aria-label="${fmtDay(d)}${svc.has(k)?", "+esc(svc.get(k)):""}${mineOut?", marked unavailable":""}${outs.length?`, ${outs.length} unavailable`:""}">
+      <span class="dn"><span>${d.getUTCDate()}</span></span>${svc.has(k)?`<span class="svc">${esc(svc.get(k))}</span>`:""}${chips}${more}</button>`;
+  }
+  $("cal").innerHTML = html;
+  const rows = [];
+  for (let d = first; d < next; d = add(d,1)) { const outs = outOn(key(d)); if (outs.length) rows.push(`<div><span class="when">${fmtDay(d)}</span><span>${outs.map(p=>`${esc(outLabel(p))} (${ROLE_LABEL[p.role]||p.role})`).join(", ")}</span></div>`); }
+  $("outlist").innerHTML = rows.join("") || `<p>No one has marked a date yet this month.</p>`;
+}
+let chain = Promise.resolve();
+function toggleOut(k){
+  const t = target();
+  if (!t) { toast(S.admin && $("m-who").value==="other" ? "Type the musician's name first." : "Sign in to mark your dates."); return; }
+  const role = $("m-role").value;
+  const store = t.kind==="me" ? S.unavail : S.named;
+  const cur = store.get(t.id) || {dates:{}};
+  const dates = {...(cur.dates||{})};
+  const wasOut = !!dates[k];
+  if (wasOut) delete dates[k]; else dates[k] = role;
+  const doc = t.kind==="me" ? {name:S.myName||"", dates} : {name:t.name, dates};
+  store.set(t.id, doc); render();
+  toast(wasOut ? `${fmtDay(parse(k))} cleared.` : `${t.kind==="me"?"You're":t.name+" is"} marked unavailable ${fmtDay(parse(k))}.`);
+  if (!S.live) return;
+  chain = chain.then(()=>db.doc((t.kind==="me"?"unavail/":"unavail_named/")+t.id).set(doc)).catch(fail);
+}
+$("cal").addEventListener("click", e=>{ const b=e.target.closest("[data-day]"); if(b && !b.disabled) toggleOut(b.dataset.day); });
+$("cal-prev").addEventListener("click", ()=>{ S.calMonth = D(S.calMonth.getUTCFullYear(), S.calMonth.getUTCMonth(), 1); renderCal(); });
+$("cal-next").addEventListener("click", ()=>{ S.calMonth = D(S.calMonth.getUTCFullYear(), S.calMonth.getUTCMonth()+2, 1); renderCal(); });
+$("m-who").addEventListener("change", renderCal);
+$("m-name").addEventListener("input", ()=>{ clearTimeout(toastT); renderCal(); });
+$("m-role").addEventListener("change", ()=>{ try{ localStorage.setItem("zion-role",$("m-role").value); }catch{} });
+try { const r = localStorage.getItem("zion-role"); if (r) $("m-role").value = r; } catch {}
+document.querySelector(".views").addEventListener("click", e=>{
+  const b = e.target.closest("button[data-v]"); if(!b) return;
+  S.view = b.dataset.v;
+  document.querySelectorAll(".views button").forEach(x=>x.setAttribute("aria-pressed", x===b));
+  $("avail").hidden = S.view!=="avail"; $("hymns").hidden = S.view!=="hymns"; $("people").hidden = S.view!=="people"; $("sched").hidden = S.view!=="services";
+  if (S.view==="people") loadPeople();
+  render();
+});
+
+/* ---------- hymns ---------- */
+const HYMN_SLOTS = [["gathering","Gathering"],["day","Hymn of the Day"],["comm1","Communion"],["comm2","Communion"],["comm3","Communion"],["sending","Sending"]];
+const HYMNALS = ["ELW","ACS","LBW","WOV","Other"];
+/* Where an added hymn falls in the order of worship */
+const PLACES = ["Prelude","Gathering","Hymn of Praise","Children's Message","Hymn of the Day","Offertory","Communion","Sending","Postlude","Special Music"];
+const SLOT_PLACE = {gathering:"Gathering", day:"Hymn of the Day", comm1:"Communion", comm2:"Communion", comm3:"Communion", sending:"Sending"};
+const placeOf = it => it.place || SLOT_PLACE[it.slot] || "Special Music";
+const labelOf = it => placeOf(it);
+const FIXED_ORDER = Object.fromEntries(HYMN_SLOTS.map(([s],i)=>[s,i]));
+function ordered(items){
+  return items.map((it,i)=>({it,i})).sort((a,b)=>{
+    const pa = PLACES.indexOf(placeOf(a.it)), pb = PLACES.indexOf(placeOf(b.it));
+    if (pa!==pb) return pa-pb;
+    const fa = a.it.slot in FIXED_ORDER, fb = b.it.slot in FIXED_ORDER;
+    if (fa!==fb) return fa?-1:1;
+    return fa ? FIXED_ORDER[a.it.slot]-FIXED_ORDER[b.it.slot] : a.i-b.i;
+  }).map(x=>x.it);
+}
+const svcDate = id => id.replace(/^sun-/,"").replace(/^sp-(\d{4}-\d{2}-\d{2}).*/,"$1");
+/* number -> {title, dates[]} from every stored hymn list (past and future) */
+function hymnIndex(){
+  const idx = new Map();
+  for (const [sid,h] of S.hymns) for (const it of (h.items||[])) {
+    if (!it.num) continue; const k = (it.book||"ELW")+" "+it.num;
+    const e = idx.get(k) || {title:it.title||"", dates:[]};
+    if (it.title && !e.title) e.title = it.title;
+    e.dates.push(svcDate(sid));
+    idx.set(k,e);
+  }
+  return idx;
+}
+function lastSung(book, num, before){
+  const e = hymnIndex().get((book||"ELW")+" "+num); if (!e) return null;
+  const prior = e.dates.filter(d=>d<before).sort(); return prior.length ? prior[prior.length-1] : null;
+}
+/* Only plain web links are kept, so a pasted link can't run script */
+function safeUrl(u){
+  u = String(u||"").trim(); if (!u) return "";
+  if (!/^[a-z][a-z0-9+.-]*:/i.test(u)) u = "https://"+u;
+  try { const x = new URL(u); return /^https?:$/.test(x.protocol) ? x.href : ""; } catch { return ""; }
+}
+const listenLink = it => { const u = safeUrl(it.link); return u ? `<a class="hylisten" href="${esc(u)}" target="_blank" rel="noopener noreferrer" aria-label="Hear ${esc(it.title||"this hymn")} performed (opens in a new tab)">▶ Listen</a>` : ""; };
+const hymnLabel = it => `${it.book && it.book!=="ELW" ? it.book+" " : ""}#${esc(it.num)}`;
+function hymnLine(s){
+  const items = ordered((S.hymns.get(s.id)?.items||[]).filter(i=>i.num||i.title));
+  if (!items.length) return "";
+  return `<div class="hyline"><span class="r">Hymns</span> ${items.map(i=>`<span title="${esc(labelOf(i))}">${i.num?hymnLabel(i)+" ":""}${esc(i.title||"")}${listenLink(i)?" "+listenLink(i):""}</span>`).join('<span class="sep">·</span>')}</div>`;
+}
+/* The editor works on a draft: the six standard spots plus any added rows */
+function draftFor(id){
+  const items = S.hymns.get(id)?.items||[];
+  const rows = HYMN_SLOTS.map(([slot])=>({key:slot, slot, ...(items.find(i=>i.slot===slot)||{})}));
+  let n = 0;
+  for (const it of items) if (!(it.slot in FIXED_ORDER)) rows.push({...it, key:"x"+(++n), slot:"x"+n, place:placeOf(it), extra:true});
+  return rows;
+}
+function readDraft(){
+  return S.hyDraft.map(r=>{
+    const v = f => ($(`h-${r.key}-${f}`)?.value ?? r[f] ?? "");
+    return {...r, book:v("book")||"ELW", num:String(v("num")).trim(), title:String(v("title")).trim(), note:String(v("note")).trim(), link:String(v("link")).trim(), place:r.extra?(v("place")||r.place):undefined};
+  });
+}
+function rowHtml(r){
+  const label = r.extra
+    ? `<select id="h-${r.key}-place" class="hplace" aria-label="Where this hymn falls in the service">${PLACES.map(p=>`<option ${placeOf(r)===p?"selected":""}>${esc(p)}</option>`).join("")}</select>`
+    : `<span class="r">${SLOT_PLACE[r.slot]}</span>`;
+  const lab = r.extra ? "Added hymn" : SLOT_PLACE[r.slot];
+  return `<div class="hyrow ${r.extra?"extra":""}" data-key="${r.key}">${label}
+    <select id="h-${r.key}-book" aria-label="${lab} hymnal">${HYMNALS.map(b=>`<option ${(r.book||"ELW")===b?"selected":""}>${b}</option>`).join("")}</select>
+    <input id="h-${r.key}-num" class="hnum" inputmode="numeric" placeholder="#" value="${esc(r.num||"")}" aria-label="${lab} number">
+    <input id="h-${r.key}-title" class="htitle" placeholder="Title" value="${esc(r.title||"")}" aria-label="${lab} title">
+    <input id="h-${r.key}-note" class="hnote" placeholder="Verses, key, who leads" value="${esc(r.note||"")}" aria-label="${lab} note">
+    <input id="h-${r.key}-link" class="hlink" type="text" inputmode="url" autocomplete="off" placeholder="Link to hear it performed (YouTube, etc.)" value="${esc(r.link||"")}" aria-label="${lab} performance link">
+    ${r.extra?`<button type="button" class="btn link hrm" data-hact="rm" data-key="${r.key}" aria-label="Remove this hymn">Remove</button>`:""}
+    <span class="hint" id="h-${r.key}-hint"></span></div>`;
+}
+function renderHymns(){
+  $("hy-intro").textContent = S.admin
+    ? "Enter the hymns for each service. Use “Add hymn” for anything beyond the standard six. Type a hymn number and the title fills in if Zion has sung it before. Musicians see these on the Schedule."
+    : "Hymns chosen for upcoming services. The director adds and updates these.";
+  const svcs = serviceList().filter(s=>!s.cancelled);
+  $("hylist").innerHTML = svcs.map(s=>{
+    const dt = parse(s.date), items = S.hymns.get(s.id)?.items||[];
+    const filled = items.filter(i=>i.num||i.title).length;
+    const status = filled ? `<span class="tag full">${filled} hymn${filled===1?"":"s"}</span>` : `<span class="tag need">Not chosen</span>`;
+    let body;
+    if (S.hyEditing===s.id) {
+      body = `<form class="hyform" data-svc="${s.id}">${S.hyDraft.map(rowHtml).join("")}
+        <div class="row"><button class="btn small" type="button" data-hact="addrow">+ Add hymn</button></div>
+        <div class="row"><button class="btn primary small" type="submit">Save hymns</button><button class="btn small" type="button" data-hact="cancel">Cancel</button></div></form>`;
+    } else if (filled) {
+      body = `<ol class="hyread">${ordered(items.filter(i=>i.num||i.title)).map(it=>
+        `<li><span class="r">${esc(labelOf(it))}</span><span class="hn">${it.num?hymnLabel(it):""}</span><span><b>${esc(it.title||"")}</b>${it.note?` <span class="muted">· ${esc(it.note)}</span>`:""}${listenLink(it)?` ${listenLink(it)}`:""}</span></li>`).join("")}</ol>`;
+    } else body = `<p class="muted" style="margin:0">${S.admin?"No hymns yet.":"Hymns haven't been chosen yet."}</p>`;
+    const btns = S.hyEditing===s.id ? "" : `<div class="row">${S.admin?`<button class="btn small" data-hact="edit" data-svc="${s.id}">${filled?"Edit hymns":"Add hymns"}</button>`:""}${filled?`<button class="btn small" data-hact="copy" data-svc="${s.id}">Copy hymn list</button>`:""}</div>`;
+    return `<article class="card" style="--lc:${s.lc}"><div class="stripe" aria-hidden="true"></div><div class="cbody">
+      <div class="chead"><div><div class="when">${fmtDay(dt)} · ${fmtTime(s.time)}</div><h3 class="title">${esc(s.name)}</h3></div>${status}</div>
+      ${body}${btns}</div></article>`;
+  }).join("") || `<div class="empty">No upcoming services in this window.</div>`;
+  if (S.hyEditing) S.hyDraft.forEach(r=>hintFor(r.key, svcDate(S.hyEditing), false));
+}
+function hintFor(key, date, fill=true){
+  const num = $(`h-${key}-num`)?.value.trim(), book = $(`h-${key}-book`)?.value, hint = $(`h-${key}-hint`);
+  if (!hint) return;
+  if (!num) { hint.textContent=""; return; }
+  const e = hymnIndex().get(book+" "+num), t = $(`h-${key}-title`);
+  if (fill && e?.title && t && !t.value) t.value = e.title;
+  const last = lastSung(book, num, date);
+  const wks = last ? Math.round(diff(parse(date), parse(last))/7) : null;
+  hint.textContent = last ? `Last sung ${fmtDay(parse(last))}${wks<=6?` (${wks} wk${wks===1?"":"s"} earlier)`:""}` : "";
+  hint.className = "hint" + (last && wks<=6 ? " recent" : "");
+}
+$("hylist").addEventListener("input", e=>{
+  const f = e.target.closest(".hyform"); if(!f) return;
+  const m = e.target.id.match(/^h-(\w+)-(num|book)$/); if (m) hintFor(m[1], svcDate(f.dataset.svc));
+});
+$("hylist").addEventListener("click", async e=>{
+  const b = e.target.closest("[data-hact]"); if(!b) return;
+  const act = b.dataset.hact;
+  if (act==="edit"){ S.hyEditing=b.dataset.svc; S.hyDraft=draftFor(S.hyEditing); renderHymns(); $("h-gathering-num")?.focus(); }
+  else if (act==="cancel"){ S.hyEditing=null; S.hyDraft=null; renderHymns(); }
+  else if (act==="addrow"){
+    S.hyDraft = readDraft();
+    const n = 1 + Math.max(0, ...S.hyDraft.filter(r=>r.extra).map(r=>Number(r.key.slice(1))));
+    S.hyDraft.push({key:"x"+n, slot:"x"+n, extra:true, place:"Communion", book:"ELW"});
+    renderHymns(); $(`h-x${n}-place`)?.focus();
+  }
+  else if (act==="rm"){ S.hyDraft = readDraft().filter(r=>r.key!==b.dataset.key); renderHymns(); }
+  else if (act==="copy"){
+    const s = serviceList().find(x=>x.id===b.dataset.svc); const items = ordered((S.hymns.get(b.dataset.svc)?.items||[]).filter(i=>i.num||i.title));
+    const lines = [`${s?s.name:""} — ${s?fmtDay(parse(s.date)):""}`];
+    for (const it of items) lines.push(`${labelOf(it)}: ${it.book&&it.book!=="ELW"?it.book+" ":""}${it.num?"#"+it.num+" ":""}${it.title||""}${it.note?" ("+it.note+")":""}${safeUrl(it.link)?" — "+safeUrl(it.link):""}`);
+    try { await navigator.clipboard.writeText(lines.join("\n")); toast("Hymn list copied."); } catch { toast("Copy isn't available here."); }
+  }
+});
+$("hylist").addEventListener("submit", async e=>{
+  e.preventDefault(); const id = e.target.dataset.svc;
+  const items = readDraft().filter(r=>r.num||r.title).map(r=>{
+    const it = {slot:r.slot, book:r.book, num:r.num.slice(0,10), title:r.title.slice(0,120), note:r.note.slice(0,120)};
+    const link = safeUrl(r.link); if (link) it.link = link.slice(0,500);
+    if (r.extra) it.place = r.place;
+    return it;
+  });
+  if (items.length > 30) { toast("That's more than 30 hymns. Remove a few and save again."); return; }
+  const doc = {items, updatedAt:new Date().toISOString()};
+  try { if (S.live) await db.doc("hymns/"+id).set(doc); S.hymns.set(id, doc); toast("Hymns saved."); } catch(err){ fail(err); }
+  S.hyEditing=null; S.hyDraft=null; render();
+});
+$("hy-more").addEventListener("click", ()=>{ S.weeks += 8; render(); });
+function toast(msg){ const t=$("toast"); t.textContent=msg; t.hidden=false; clearTimeout(toastT); toastT=setTimeout(()=>t.hidden=true,2600); }
+
+/* ---------- data actions (live db or demo) ---------- */
+async function claim(id, svc, role, n){
+  if (!S.live){ S.signups.set(id,{uid:S.me,service:svc,role,n}); return true; }
+  // The spot's id is unique in the database, so if two people tap at once only one wins.
+  return db.doc("signups/"+id).create({uid:S.me, name:S.myName, email:S.myEmail, service:svc, role, n, at:new Date().toISOString()});
+}
+async function drop(id){
+  if (!S.live){ S.signups.delete(id); return; }
+  await db.doc("signups/"+id).delete();
+}
+async function saveService(id, data){
+  if (!S.live){ S.services.set(id,{...(S.services.get(id)||{}),...data}); return; }
+  const ref = db.doc("services/"+id), cur = await ref.get();
+  await ref.set({...(cur.exists?cur.data():{}), ...data});
+}
+async function deleteService(id){
+  if (!S.live){ S.services.delete(id); for (const k of [...S.signups.keys()]) if(k.startsWith(id+"~")) S.signups.delete(k); return; }
+  await db.doc("services/"+id).delete();
+  for (const k of [...S.signups.keys()]) if (k.startsWith(id+"~")) await db.doc("signups/"+k).delete();
+}
+const fail = e => toast(e && e.code==="not_granted" ? "You don't have permission to change the sign-up sheet. Ask the music director for access." : "That didn't save. Check your connection and try again.");
+
+/* Active musicians' names for the director's "Or assign" drop-down */
+const assignNames = () => [...new Set(S.people.filter(p=>p.active!==false && p.name).map(p=>String(p.name).trim()))].sort((a,b)=>a.localeCompare(b));
+
+/* ---------- email a service's musicians ---------- */
+/* A signup's email: saved on newer signups, otherwise matched by name on the musician list */
+function emailFor(su){
+  if (su.email) return su.email;
+  const nm = String(su.example||su.name||S.names[su.uid]||"").trim().toLowerCase(); if (!nm) return "";
+  const p = S.people.find(x => x.active!==false && String(x.name||"").trim().toLowerCase()===nm);
+  return p ? p.email : "";
+}
+function mailService(s){
+  const to = new Set(), missing = [], roster = [];
+  for (const [r,l] of ROLES) for (let n=1;n<=s.slots[r];n++){
+    const su = S.signups.get(slotId(s.id,r,n)); if (!su) continue;
+    const nm = su.example||su.name||S.names[su.uid]||"A musician", em = emailFor(su);
+    roster.push(`  ${s.slots[r]>1?`${l} ${n}`:l}: ${nm}`);
+    if (em) to.add(em); else missing.push(nm);
+  }
+  if (!to.size){ toast("No emails found for this service's musicians. Check names on the Musicians tab."); return; }
+  const items = ordered((S.hymns.get(s.id)?.items||[]).filter(i=>i.num||i.title));
+  const when = `${fmtDay(parse(s.date))}, ${fmtTime(s.time)}`;
+  const lines = [`Hi all,`, ``, `Here are the details for ${s.name} on ${when}.`, ``];
+  if (s.note) lines.push(`Note: ${s.note}`, ``);
+  lines.push(`HYMNS`);
+  if (items.length) for (const it of items){
+    lines.push(`${labelOf(it)}: ${it.num?`${it.book||"ELW"} #${it.num} `:""}${it.title||""}`.trim());
+    if (it.note) lines.push(`  Verses / notes: ${it.note}`);
+    if (safeUrl(it.link)) lines.push(`  Listen: ${safeUrl(it.link)}`);
+  } else lines.push(`  Not chosen yet.`);
+  lines.push(``, `WHO'S PLAYING`, ...roster, ``, `Thank you!`, S.myName||"");
+  const url = `mailto:${[...to].join(",")}?subject=${encodeURIComponent(`${s.name} — ${when}`)}&body=${encodeURIComponent(lines.join("\r\n"))}`;
+  location.href = url;
+  toast(missing.length ? `Opening your email app. No email on file for: ${missing.join(", ")}.` : "Opening your email app with everyone on this service.");
+}
+
+/* ---------- events ---------- */
+document.querySelector(".tabs").addEventListener("click", e=>{
+  const b = e.target.closest("button[data-f]"); if(!b) return;
+  S.filter = b.dataset.f; document.querySelectorAll(".tabs button").forEach(x=>x.setAttribute("aria-pressed", x===b)); render();
+});
+$("more").addEventListener("click", ()=>{ S.weeks += 8; render(); });
+$("list").addEventListener("click", async e=>{
+  const b = e.target.closest("[data-act]"); if(!b) return;
+  const act = b.dataset.act;
+  if (act==="pick"){ if(!S.me){ toast("Sign in to claim a spot."); return; } S.pending={slot:b.dataset.slot, svc:b.dataset.svc, label:b.dataset.label}; S.editing=null; render(); if (S.admin && S.live && !S.peopleLoaded){ await loadPeople(); render(); } }
+  else if (act==="cancel"){ S.pending=null; S.editing=null; render(); }
+  else if (act==="confirm"){
+    const p=S.pending; S.pending=null; const [svc,role,n]=p.slot.split("~");
+    try { const ok = await claim(p.slot, svc, role, Number(n)); toast(ok?`You're signed up: ${p.label}.`:"Someone just took that spot. Pick another open one."); } catch(err){ fail(err); }
+    render();
+  }
+  else if (act==="assign"){
+    const pick = $("as-pick")?.value||"";
+    if (!pick){ $("as-pick")?.focus(); toast("Choose a musician first."); return; }
+    const name = pick==="__other" ? ($("as-name")?.value||"").trim() : pick; if(!name){ $("as-name")?.focus(); return; }
+    const p=S.pending; S.pending=null; const [svc,role,n]=p.slot.split("~");
+    try {
+      let ok = true;
+      if (!S.live) S.signups.set(p.slot,{name,service:svc,role,n:Number(n)});
+      else { const em = emailFor({name}); ok = await db.doc("signups/"+p.slot).create({name, ...(em?{email:em}:{}), service:svc, role, n:Number(n), assignedBy:S.me, at:new Date().toISOString()}); }
+      toast(ok ? `${name} assigned: ${p.label}.` : "Someone just took that spot. Pick another open one.");
+    } catch(err){ fail(err); }
+    render();
+  }
+  else if (act==="drop"){ try{ await drop(b.dataset.slot); toast("Spot opened up."); }catch(err){ fail(err); } render(); }
+  else if (act==="edit"){ S.editing=b.dataset.svc; S.pending=null; render(); }
+  else if (act==="delsvc"){
+    if (b.dataset.armed){ try{ await deleteService(b.dataset.svc); toast("Service deleted."); }catch(err){ fail(err); } render(); }
+    else { b.dataset.armed="1"; b.textContent="Tap again to delete"; }
+  }
+  else if (act==="copy"){
+    const s = serviceList().find(x=>x.id===b.dataset.svc); if(!s) return;
+    const lines = [`${s.name} — ${fmtDay(parse(s.date))}, ${fmtTime(s.time)}`];
+    for (const [r,l] of ROLES) { const who=[]; for(let n=1;n<=s.slots[r];n++){ const su=S.signups.get(slotId(s.id,r,n)); if(su) who.push(su.example||su.name||S.names[su.uid]||(su.uid===S.me?"(you)":"A musician")); } if(s.slots[r]) lines.push(`${l}${s.slots[r]>1?"s":""}: ${who.join(", ")||"open"}`); }
+    const text = lines.join("\n");
+    try { await navigator.clipboard.writeText(text); toast("Roster copied for the bulletin."); } catch { toast("Copy isn't available here."); }
+  }
+  else if (act==="mail"){
+    const s = serviceList().find(x=>x.id===b.dataset.svc); if(!s) return;
+    if (S.live && !S.peopleLoaded) await loadPeople();
+    mailService(s);
+  }
+});
+$("list").addEventListener("change", e=>{
+  if (e.target.id!=="as-pick") return;
+  const other = e.target.value==="__other", inp = $("as-name");
+  inp.hidden = !other; if (other) inp.focus(); else inp.value = "";
+});
+$("list").addEventListener("submit", async e=>{
+  e.preventDefault(); const f=e.target, id=f.dataset.svc, slots={};
+  for (const [r] of ROLES) slots[r] = Math.max(0, Math.min(8, Number($("e-"+r).value)||0));
+  const data = {slots, time:$("e-time").value||"10:00", note:$("e-note").value.trim()};
+  if (id.startsWith("sun-")) { data.kind="sunday"; data.date=id.slice(4); data.cancelled=!!$("e-cancel")?.checked; }
+  try { await saveService(id, data); toast("Service updated."); } catch(err){ fail(err); }
+  S.editing=null; render();
+});
+$("suggest").addEventListener("click", e=>{
+  const b=e.target.closest("[data-sug]"); if(!b) return;
+  const [d,n,t]=b.dataset.sug.split("|"); $("a-date").value=d; $("a-name").value=n; $("a-time").value=t; $("a-name").focus();
+});
+$("addForm").addEventListener("submit", async e=>{
+  e.preventDefault();
+  const date=$("a-date").value, name=$("a-name").value.trim(), time=$("a-time").value;
+  if (!date||!name) return;
+  const id = `sp-${date}-${Math.random().toString(36).slice(2,7)}`;
+  try { await saveService(id,{kind:"special", date, time, name, slots:{...DEFAULT_SLOTS}}); toast(`${name} added.`);
+    const end=add(TODAY,S.weeks*7); if (parse(date)>=end) S.weeks = Math.ceil(diff(parse(date),TODAY)/7)+1;
+    e.target.reset(); $("a-time").value="19:00"; } catch(err){ fail(err); }
+  renderAdmin(); render();
+});
+
+/* ---------- boot ---------- */
+function demo(){
+  S.live=false; S.me="me"; S.admin=true; $("demo").hidden=false; $("who").textContent="Demo · director view";
+  const sun = add(TODAY,(7-TODAY.getUTCDay())%7);
+  const a="sun-"+key(sun), b="sun-"+key(add(sun,7));
+  S.signups.set(slotId(a,"singer",1),{uid:"x1",example:"Example singer"});
+  S.signups.set(slotId(a,"accompanist",1),{uid:"x2",example:"Example accompanist"});
+  S.signups.set(slotId(a,"guitar",1),{uid:"x3",example:"Example guitarist"});
+  S.signups.set(slotId(b,"singer",1),{uid:"x1",example:"Example singer"});
+  S.signups.set(slotId(b,"drums",1),{uid:"x4",example:"Example drummer"});
+  S.hymns.set(a,{items:[{slot:"gathering",book:"ELW",num:"853",title:"When Morning Gilds the Skies"},{slot:"day",book:"ELW",num:"659",title:"Will You Let Me Be Your Servant"},{slot:"sending",book:"ELW",num:"765",title:"Lord of All Hopefulness"}]});
+  S.named.set(slug("Example drummer"),{name:"Example drummer", dates:{[key(add(sun,14))]:"drums"}});
+  renderAdmin(); render();
+}
+/* ---------- connection to the church database (Supabase) ---------- */
+const CFG = window.ZION_CONFIG || {};
+const configured = !!(CFG.supabaseUrl && CFG.supabaseAnonKey && !/YOUR-/.test(CFG.supabaseUrl + CFG.supabaseAnonKey) && window.supabase);
+let sb = null;
+function norm(err){
+  const m = `${err?.message||""} ${err?.code||""}`;
+  return { code: /row-level security|42501|permission denied/i.test(m) ? "not_granted" : "unavailable", message: err?.message || "" };
+}
+/* A small store: each table holds {id, data}. Pages read whole tables and refresh live. */
+function makeDb(){
+  const split = p => { const i = p.indexOf("/"); return [p.slice(0,i), p.slice(i+1)]; };
+  return {
+    doc(path){ const [t,id] = split(path); return {
+      async get(){ const {data,error} = await sb.from(t).select("data").eq("id",id).maybeSingle(); if (error) throw norm(error); return {exists:!!data, data:()=>data?.data}; },
+      async set(d){ const {error} = await sb.from(t).upsert({id, data:d, updated_at:new Date().toISOString()}); if (error) throw norm(error); },
+      async create(d){ const {error} = await sb.from(t).insert({id, data:d}); if (error){ if (error.code==="23505") return false; throw norm(error); } return true; },
+      async delete(){ const {error} = await sb.from(t).delete().eq("id",id); if (error) throw norm(error); }
+    }; },
+    collection(t){ return { onSnapshot(next, onErr){
+      let busy = false, again = false;
+      const load = async () => {
+        if (busy){ again = true; return; }
+        busy = true;
+        try {
+          const rows = [];
+          for (let from = 0; ; from += 1000) {
+            const {data,error} = await sb.from(t).select("id,data").range(from, from+999);
+            if (error) throw error;
+            rows.push(...data); if (data.length < 1000) break;
+          }
+          next({docs: rows.map(r => ({id:r.id, data:()=>r.data}))});
+        } catch(e){ onErr && onErr(norm(e)); }
+        busy = false; if (again){ again = false; load(); }
+      };
+      load();
+      sb.channel("live-"+t).on("postgres_changes", {event:"*", schema:"public", table:t}, () => load()).subscribe();
+      document.addEventListener("visibilitychange", () => { if (document.visibilityState==="visible") load(); });
+    } }; }
+  };
+}
+
+/* ---------- sign-in screens ---------- */
+function showGate(which, detail){
+  $("gate").hidden = false; $("app").hidden = true;
+  for (const id of ["g-loading","g-login","g-sent","g-notlisted","g-error"]) $(id).hidden = id !== "g-"+which;
+  if (which==="notlisted") $("g-email").textContent = detail;
+  if (which==="error" && detail) $("g-error-msg").textContent = detail;
+  if (which==="login") setTimeout(()=>$("l-email").focus(), 0);
+}
+$("loginForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const email = $("l-email").value.trim().toLowerCase(), err = $("l-err"), btn = $("l-send");
+  if (!email) return;
+  err.hidden = true; btn.disabled = true; btn.textContent = "Sending…";
+  const redirect = location.origin + location.pathname;
+  const { error } = await sb.auth.signInWithOtp({ email, options: { emailRedirectTo: redirect } });
+  btn.disabled = false; btn.textContent = "Email me a sign-in link";
+  if (error) {
+    err.textContent = /rate|security purposes|seconds/i.test(error.message)
+      ? "A sign-in email was just sent. Wait a minute, then try again."
+      : "We couldn't send the email. Check the address and try again. If it keeps failing, tell the music director.";
+    err.hidden = false; return;
+  }
+  $("g-sent-to").textContent = email; showGate("sent");
+});
+$("g-back").addEventListener("click", () => showGate("login"));
+document.addEventListener("click", async e => {
+  if (!e.target.closest("[data-signout]")) return;
+  if (sb) await sb.auth.signOut();
+  location.replace(location.origin + location.pathname);
+});
+
+/* ---------- Musicians tab (directors) ---------- */
+async function loadPeople(){
+  if (!S.live) { renderPeople(); return; }
+  const { data, error } = await sb.from("members").select("*").order("name");
+  if (error) { toast("Couldn't load the musician list. Reload to try again."); return; }
+  S.people = data; S.peopleLoaded = true; renderPeople();
+}
+function renderPeople(){
+  const rows = S.people.map(p => {
+    const me = p.email === S.myEmail;
+    return `<div class="prow"><div style="min-width:0"><div class="pn">${esc(p.name)}${p.is_director?' <span class="pill">Director</span>':""}${p.active?"":' <span class="tag need">Removed</span>'}</div><div class="pe">${esc(p.email)}</div></div>
+      <div class="pa">${me ? '<span class="muted" style="font-size:13px">You</span>' :
+        `<button class="btn small" data-pact="dir" data-email="${esc(p.email)}">${p.is_director?"Make musician":"Make director"}</button>
+         <button class="btn small ${p.active?"danger":""}" data-pact="${p.active?"remove":"restore"}" data-email="${esc(p.email)}">${p.active?"Remove":"Restore"}</button>`}</div></div>`;
+  }).join("");
+  $("plist").innerHTML = rows || `<p>No musicians yet. Add the first one above.</p>`;
+}
+$("addMember").addEventListener("submit", async e => {
+  e.preventDefault();
+  const name = $("pm-name").value.trim(), email = $("pm-email").value.trim().toLowerCase(), dir = $("pm-dir").checked;
+  if (!name || !email) return;
+  if (!S.live) { S.people.push({name, email, is_director:dir, active:true}); renderPeople(); e.target.reset(); return; }
+  const { error } = await sb.from("members").upsert({ email, name, is_director: dir, active: true });
+  if (error) { toast(norm(error).code==="not_granted" ? "Only directors can add musicians." : "That didn't save. Check the email and try again."); return; }
+  toast(`${name} added. Tell them to sign in with ${email}.`); e.target.reset(); loadPeople();
+});
+$("plist").addEventListener("click", async e => {
+  const b = e.target.closest("[data-pact]"); if (!b) return;
+  const p = S.people.find(x => x.email === b.dataset.email); if (!p) return;
+  if (b.dataset.pact === "remove" && !b.dataset.armed) { b.dataset.armed = "1"; b.textContent = "Tap again to remove"; return; }
+  const patch = b.dataset.pact==="dir" ? {is_director: !p.is_director} : {active: b.dataset.pact==="restore"};
+  if (!S.live) { Object.assign(p, patch); renderPeople(); return; }
+  const { error } = await sb.from("members").update(patch).eq("email", p.email);
+  if (error) { fail(norm(error)); return; }
+  toast(b.dataset.pact==="dir" ? (patch.is_director ? `${p.name} is now a director.` : `${p.name} is now a musician.`) : (patch.active ? `${p.name} can sign in again.` : `${p.name} can no longer sign in.`));
+  loadPeople();
+});
+
+/* ---------- start ---------- */
+function openApp(){
+  $("gate").hidden = true; $("app").hidden = false;
+  $("v-people").hidden = !S.admin;
+  renderAdmin(); render();
+}
+async function boot(){
+  if (!configured) {
+    openApp(); demo();
+    S.people = [{name:"Example director", email:"director@example.com", is_director:true, active:true}, {name:"Example singer", email:"singer@example.com", is_director:false, active:true}];
+    S.myEmail = "director@example.com"; $("v-people").hidden = false;
+    return;
+  }
+  const urlHash = location.hash + location.search;
+  sb = window.supabase.createClient(CFG.supabaseUrl, CFG.supabaseAnonKey, { auth: { flowType: "implicit", persistSession: true, detectSessionInUrl: true } });
+  db = makeDb();
+  let session;
+  try { ({ data: { session } } = await sb.auth.getSession()); }
+  catch { return showGate("error"); }
+  if (/access_token|error_description/.test(location.hash)) history.replaceState(null, "", location.pathname);
+  if (!session) {
+    if (/error_description|otp_expired/.test(urlHash)) $("l-err").textContent = "That sign-in link has expired or was already used. Enter your email for a new one.", $("l-err").hidden = false;
+    return showGate("login");
+  }
+  const email = (session.user.email || "").toLowerCase();
+  const { data: m, error } = await sb.from("members").select("*").eq("email", email).maybeSingle();
+  if (error) return showGate("error", "The sign-up sheet didn't load. Reload the page; if it still fails, tell the music director.");
+  if (!m || !m.active) return showGate("notlisted", email);
+  S.live = true; S.me = session.user.id; S.myName = m.name; S.myEmail = email; S.admin = !!m.is_director; S.names[S.me] = m.name;
+  $("me-name").textContent = m.name + (S.admin ? " · director" : ""); $("userbar").hidden = false;
+  $("who").textContent = "";
+  openApp();
+  const lost = what => () => toast(`Lost connection to ${what}. Reload to reconnect.`);
+  db.collection("services").onSnapshot(snap=>{ S.services=new Map(snap.docs.map(d=>[d.id,d.data()])); renderAdmin(); render(); }, lost("the service list"));
+  db.collection("signups").onSnapshot(snap=>{ S.signups=new Map(snap.docs.map(d=>[d.id,d.data()])); for (const v of S.signups.values()) if (v.uid && v.name) S.names[v.uid]=v.name; render(); }, lost("sign-ups"));
+  db.collection("unavail").onSnapshot(snap=>{ S.unavail=new Map(snap.docs.map(d=>[d.id,d.data()])); for (const [k,v] of S.unavail) if (v?.name) S.names[k]=v.name; render(); }, lost("the availability calendar"));
+  db.collection("hymns").onSnapshot(snap=>{ S.hymns=new Map(snap.docs.map(d=>[d.id,d.data()])); render(); }, lost("the hymn lists"));
+  db.collection("unavail_named").onSnapshot(snap=>{ S.named=new Map(snap.docs.map(d=>[d.id,d.data()])); render(); }, ()=>{});
+}
+boot();
+})();
+</script>
+</body>
+</html>
